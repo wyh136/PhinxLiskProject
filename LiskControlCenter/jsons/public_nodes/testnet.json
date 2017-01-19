@@ -1,0 +1,7 @@
+{
+  "nodes": 
+  [
+    {"owner": "Phinx","URL": "http://test01.lisk.asia:7000"},
+    {"owner": "Official","URL": "https://testnet.lisk.io"}
+  ]
+}

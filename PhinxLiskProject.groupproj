@@ -1,0 +1,72 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{8889DC77-D991-4D98-A111-C56819C71A0D}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="libLiskWin\libLiskApi.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="LiskControlCenter\LiskControlCenter.cbproj">
+            <Dependencies>slibLiskApi\slibLiskApi.cbproj</Dependencies>
+        </Projects>
+        <Projects Include="jsontest\jsontest.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="slibLiskApi\slibLiskApi.cbproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="libLiskApi">
+        <MSBuild Projects="libLiskWin\libLiskApi.cbproj"/>
+    </Target>
+    <Target Name="libLiskApi:Clean">
+        <MSBuild Projects="libLiskWin\libLiskApi.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="libLiskApi:Make">
+        <MSBuild Projects="libLiskWin\libLiskApi.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="LiskControlCenter" DependsOnTargets="slibLiskApi">
+        <MSBuild Projects="LiskControlCenter\LiskControlCenter.cbproj"/>
+    </Target>
+    <Target Name="LiskControlCenter:Clean" DependsOnTargets="slibLiskApi:Clean">
+        <MSBuild Projects="LiskControlCenter\LiskControlCenter.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="LiskControlCenter:Make" DependsOnTargets="slibLiskApi:Make">
+        <MSBuild Projects="LiskControlCenter\LiskControlCenter.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="jsontest">
+        <MSBuild Projects="jsontest\jsontest.cbproj"/>
+    </Target>
+    <Target Name="jsontest:Clean">
+        <MSBuild Projects="jsontest\jsontest.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="jsontest:Make">
+        <MSBuild Projects="jsontest\jsontest.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="slibLiskApi">
+        <MSBuild Projects="slibLiskApi\slibLiskApi.cbproj"/>
+    </Target>
+    <Target Name="slibLiskApi:Clean">
+        <MSBuild Projects="slibLiskApi\slibLiskApi.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="slibLiskApi:Make">
+        <MSBuild Projects="slibLiskApi\slibLiskApi.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="libLiskApi;LiskControlCenter;jsontest;slibLiskApi"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="libLiskApi:Clean;LiskControlCenter:Clean;jsontest:Clean;slibLiskApi:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="libLiskApi:Make;LiskControlCenter:Make;jsontest:Make;slibLiskApi:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

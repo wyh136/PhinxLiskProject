@@ -1,0 +1,8 @@
+{
+  "servers":
+  [
+    { "url": "http://phinx01.lisk.asia:8000" },
+    { "url": "http://backup3.lisk.asia:8000" },
+    { "url": "http://backup4.lisk.asia:8000" }
+  ]
+}

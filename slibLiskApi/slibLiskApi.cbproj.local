@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
 	<Transactions>
-    <Transaction>2017/01/19 00:21:52.000.986,C:\Users\wyh13\Documents\Embarcadero\Studio\Projects\Project1.cbproj=C:\Users\wyh13\Documents\Embarcadero\Studio\Projects\slibLiskApi.cbproj</Transaction>
-    <Transaction>2017/01/19 00:22:13.000.957,C:\Users\wyh13\Documents\Embarcadero\Studio\Projects\slibLiskApi.cbproj=E:\PhinxLiskProjects\slibLiskApi\slibLiskApi.cbproj</Transaction>
+    <Transaction>2017/01/19 00:21:52.000.986,C:\Users\wyh13\Documents\Embarcadero\Studio\Projects\slibLiskApi.cbproj=C:\Users\wyh13\Documents\Embarcadero\Studio\Projects\Project1.cbproj</Transaction>
+    <Transaction>2017/01/19 00:22:13.000.957,E:\PhinxLiskProjects\slibLiskApi\slibLiskApi.cbproj=C:\Users\wyh13\Documents\Embarcadero\Studio\Projects\slibLiskApi.cbproj</Transaction>
     <Transaction>2017/01/19 00:22:32.000.207,=E:\PhinxLiskProjects\slibLiskApi\LiskApi.cpp</Transaction>
   </Transactions>
 </BorlandProject>

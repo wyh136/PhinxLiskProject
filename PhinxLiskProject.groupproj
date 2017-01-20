@@ -15,6 +15,9 @@
         <Projects Include="libLiskDll\libLiskApi.cbproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="tx\Project1.cbproj">
+            <Dependencies/>
+        </Projects>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -59,14 +62,23 @@
     <Target Name="libLiskApi:Make">
         <MSBuild Projects="libLiskDll\libLiskApi.cbproj" Targets="Make"/>
     </Target>
+    <Target Name="Project1">
+        <MSBuild Projects="tx\Project1.cbproj"/>
+    </Target>
+    <Target Name="Project1:Clean">
+        <MSBuild Projects="tx\Project1.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Project1:Make">
+        <MSBuild Projects="tx\Project1.cbproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="LiskControlCenter;jsontest;slibLiskApi;libLiskApi"/>
+        <CallTarget Targets="LiskControlCenter;jsontest;slibLiskApi;libLiskApi;Project1"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="LiskControlCenter:Clean;jsontest:Clean;slibLiskApi:Clean;libLiskApi:Clean"/>
+        <CallTarget Targets="LiskControlCenter:Clean;jsontest:Clean;slibLiskApi:Clean;libLiskApi:Clean;Project1:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="LiskControlCenter:Make;jsontest:Make;slibLiskApi:Make;libLiskApi:Make"/>
+        <CallTarget Targets="LiskControlCenter:Make;jsontest:Make;slibLiskApi:Make;libLiskApi:Make;Project1:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

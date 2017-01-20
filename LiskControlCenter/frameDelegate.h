@@ -11,7 +11,8 @@
 #include <Vcl.ExtCtrls.hpp>
 #include "LiskApi.h"
 #include "ulkJSON.hpp"
-#include <System.Notification.hpp>
+#include "TDelegateInfo.h"
+#include "mymsg.h"
 //---------------------------------------------------------------------------
 class TframDelegate : public TFrame
 {
@@ -34,16 +35,19 @@ __published:	// IDE-managed Components
 	TLabel *lb_pblocks;
 	TLabel *Label5;
 	TLabel *lb_missed;
-	TTimer *Timer1;
 	TLabel *lb_pos;
-	void __fastcall Timer1Timer(TObject *Sender);
 private:	// User declarations
 	char * NodeUrl;
+	bool TestNet;
+	UnicodeString UserName;
+	TDelegateInfo *tgi;
 	LiskAPI *liskapi;
-    void __fastcall enumlist(System::UnicodeString ElName, TlkJSONbase* Elem, void * data, bool &Continue);
+	void __fastcall enumlist(System::UnicodeString ElName, TlkJSONbase* Elem, void * data, bool &Continue);
+    void __fastcall OnData(UnicodeString username,UnicodeString votes,UnicodeString rank, UnicodeString address,UnicodeString publickey,UnicodeString approval, UnicodeString producedblocks,UnicodeString missedblocks,int position ,int _pos);
+	__fastcall ~TframDelegate();
 public:		// User declarations
-	__fastcall TframDelegate(TComponent* Owner,char* nodeurl);
-	void	__fastcall TframDelegate::Reload();
+	__fastcall TframDelegate(TComponent* Owner,char* nodeurl,bool isTest,UnicodeString username);
+
 };
 //---------------------------------------------------------------------------
 extern PACKAGE TframDelegate *framDelegate;

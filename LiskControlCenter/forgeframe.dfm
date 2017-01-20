@@ -55,7 +55,6 @@ object ffrmServers: TffrmServers
       RowSelect = True
       TabOrder = 0
       ViewStyle = vsReport
-      OnAdvancedCustomDrawItem = lvAdvancedCustomDrawItem
     end
   end
 end

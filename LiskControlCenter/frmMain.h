@@ -12,6 +12,8 @@
 #include <ulkJSON.hpp>
 #include "cfrmPublicNodes.h"
 #include "frmdlg.h"
+#include <Vcl.ExtCtrls.hpp>
+#include "mymsg.h"
 //---------------------------------------------------------------------------
 class TMainFrm : public TForm
 {
@@ -32,16 +34,35 @@ __published:	// IDE-managed Components
 	TMenuItem *MultiSignature1;
 	TMenuItem *N2;
 	TMenuItem *AddressBook1;
+	TTrayIcon *ticon;
 	void __fastcall FormCreate(TObject *Sender);
 	void __fastcall FormDestroy(TObject *Sender);
 	void __fastcall mn_pubnodesClick(TObject *Sender);
 	void __fastcall ForgingDashboard1Click(TObject *Sender);
+	void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
+	void __fastcall FormCloseQuery(TObject *Sender, bool &CanClose);
+	void __fastcall ticonDblClick(TObject *Sender);
 private:	// User declarations
-    TForm* __fastcall FormExist(UnicodeString szCaption);
+	TForm* __fastcall FormExist(UnicodeString szCaption);
+	void __fastcall NotifyEvent(TMessage &Message);
+    void __fastcall ShowNotify(UnicodeString text,UnicodeString title);
 public:		// User declarations
 	__fastcall TMainFrm(TComponent* Owner);
+
+    BEGIN_MESSAGE_MAP
+		MESSAGE_HANDLER(WM_FORGE_GOTBLOCK, TMessage, NotifyEvent)
+		MESSAGE_HANDLER(WM_FORGE_MISSBLOCK, TMessage, NotifyEvent)
+		MESSAGE_HANDLER(WM_FORGE_SEVER_OFFLINE , TMessage, NotifyEvent)
+		MESSAGE_HANDLER(WM_FORGE_SEVER_ONLINE, TMessage, NotifyEvent)
+		MESSAGE_HANDLER(WM_VOTES_INCOMING, TMessage, NotifyEvent)
+		MESSAGE_HANDLER(WM_VOTES_REMOVE , TMessage, NotifyEvent)
+		MESSAGE_HANDLER(WM_BALANCE_INCOMING, TMessage, NotifyEvent)
+		MESSAGE_HANDLER(WM_BALANCE_SENDOUT , TMessage, NotifyEvent)
+	END_MESSAGE_MAP(TForm)
 };
 //---------------------------------------------------------------------------
 extern PACKAGE TMainFrm *MainFrm;
 //---------------------------------------------------------------------------
 #endif
+
+

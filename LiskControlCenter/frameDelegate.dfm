@@ -178,10 +178,4 @@ object framDelegate: TframDelegate
       end
     end
   end
-  object Timer1: TTimer
-    Interval = 10000
-    OnTimer = Timer1Timer
-    Left = 317
-    Top = 186
-  end
 end

@@ -9,14 +9,14 @@
 #include <Vcl.Forms.hpp>
 #include <Vcl.ComCtrls.hpp>
 #include "ulkJSON.hpp"
+#include <System.ImageList.hpp>
+#include <Vcl.ImgList.hpp>
 //---------------------------------------------------------------------------
 class TffrmServers : public TFrame
 {
 __published:	// IDE-managed Components
 	TGroupBox *GroupBox1;
 	TListView *lv;
-	void __fastcall lvAdvancedCustomDrawItem(TCustomListView *Sender, TListItem *Item,
-          TCustomDrawState State, TCustomDrawStage Stage, bool &DefaultDraw);
 
 private:	// User declarations
     void __fastcall (__closure *enumfuc)(System::UnicodeString ElName, TlkJSONbase* Elem, void * data, bool &Continue);
@@ -29,7 +29,7 @@ private:	// User declarations
 	__fastcall TffrmServers(TComponent* Owner,bool isTestNet);
     void __fastcall StopJobs();
 	void __fastcall LoadPublicNodes();
-	void __fastcall LoadDelegateInfo();
+	UnicodeString __fastcall LoadDelegateInfo();
 };
 //---------------------------------------------------------------------------
 extern PACKAGE TffrmServers *ffrmServers;

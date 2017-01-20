@@ -76,10 +76,11 @@ void __fastcall TffrmServers::LoadPublicNodes()
 	lv->Items->Clear();
 	nodes->ForEach(enumfuc,lv->Items);
 	delete ss;
+    json->Free();
 
 }
 
-void __fastcall TffrmServers::LoadDelegateInfo()
+UnicodeString __fastcall TffrmServers::LoadDelegateInfo()
 {
 
 	UnicodeString path=exepath+"\\delegate_set\\";
@@ -104,18 +105,8 @@ void __fastcall TffrmServers::LoadDelegateInfo()
 	publickey=json->getString("publickey");
 	address=json->getString("address");
 	delete ss;
+	json->Free();
+	return username;
 
 }
-void __fastcall TffrmServers::lvAdvancedCustomDrawItem(TCustomListView *Sender,
-          TListItem *Item, TCustomDrawState State, TCustomDrawStage Stage,
-          bool &DefaultDraw)
-{
-	if(Item->Checked){
-	lv->Canvas->Brush->Color  =  clWhite  ;
-	lv->Canvas->Font->Color    =  clBlue;
-	}else{
-       lv->Canvas->Brush->Color  =  clWhite  ;
-	   lv->Canvas->Font->Color    =  clGray;
-	}
-}
-//---------------------------------------------------------------------------
+

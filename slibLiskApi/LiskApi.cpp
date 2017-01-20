@@ -27,6 +27,7 @@ __stdcall LiskAPI::LiskAPI() {
 
 // ---------------------------------------------------------------------------
 __stdcall LiskAPI::~LiskAPI() {
+
 	if (!http)
 		delete http;
 	if(!ssl)
@@ -38,6 +39,7 @@ char * __stdcall LiskAPI::_request(REQUEST_METHOD request_method, char * url,
 	char * data) {
 	return HTTPRequest(request_method,(lisknode+url).c_str(),data);
 }
+
 char * __stdcall LiskAPI::HTTPRequest(REQUEST_METHOD request_method,char * url,char *data)
 {
     TStringStream *ss = NULL;
@@ -56,11 +58,13 @@ char * __stdcall LiskAPI::HTTPRequest(REQUEST_METHOD request_method,char * url,c
 			result = http->Put(AnsiString(url), ss);
 			break;
 		}
-	}catch(...){}
-	if (ss) {
-		ss->Free();
-		ss = NULL;
+	}catch(...){
+        result="";
 	}
+	if (ss) {
+		delete ss;
+	}
+	if(result=="")return NULL;
 	return result.c_str();
 }
 // ---------------------------------------------------------------------------
@@ -73,7 +77,8 @@ char * __stdcall LiskAPI::ForgingStatu(char * publickey) {
 	return _request(url.c_str());
 }
 
-// ---------------------------------------------------------------------------   /api/loader/status/ping
+// ---------------------------------------------------------------------------
+
 char * __stdcall LiskAPI::Ping() {
 	return _request("/api/loader/status/ping");
 }
@@ -148,7 +153,9 @@ char * __stdcall LiskAPI::SyncStatus() {
 // ---------------------------------------------------------------------------
 char * __stdcall LiskAPI::Transactions(char * blockID, char * senderId,
 	char * recvID, __int64 limit, __int64 offset, char * orderby) {
-	AnsiString url = url.sprintf("/api/transactions?blockId=%s", blockID);
+	AnsiString url ="/api/transactions?";
+	if(blockID!=NULL)
+		url = url.cat_sprintf("&blockId=%s", blockID);
 	if (limit > 100)
 		limit = 100;
 	if (senderId != NULL)
@@ -159,7 +166,7 @@ char * __stdcall LiskAPI::Transactions(char * blockID, char * senderId,
 		url = url.cat_sprintf("&limit=%d", limit);
 	if (offset > 0)
 		url = url.cat_sprintf("&offset=%d", offset);
-	if (orderby == "")
+	if (orderby == NULL)
 		orderby = "timestamp:desc";
 	url = url.cat_sprintf("&orderBy=%s", orderby);
 	return _request(url.c_str());

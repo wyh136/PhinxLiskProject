@@ -53,6 +53,7 @@ void __fastcall TfrmPublicNodes::LoadPublicNodes(bool isTestNet)
 	enumfuc=enumlist;
 	lv->Items->Clear();
 	nodes->ForEach(enumfuc,lv->Items);
+    json->Free();
 	delete ss;
 
 }
@@ -84,6 +85,8 @@ void __fastcall TfrmPublicNodes::SavePublicNodes(bool isTestNet)
 	TStringList *ss=new TStringList();
 	ss->Text=TlkJSON::GenerateText(json);
 	ss->SaveToFile(path);
+	json->Free();
+    delete ss;
 
 }
 

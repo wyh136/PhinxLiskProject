@@ -67,7 +67,9 @@ void __fastcall TForgeJob::Execute()
                 jo->Free();
 			 }
 		}catch(...)
-		{}
+		{
+
+		}
 
 
 

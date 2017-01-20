@@ -25,32 +25,39 @@ void __fastcall TfrmDlgdashbrd::FormCreate(TObject *Sender)
 	ffrmsvr_test->Name="ffrmsvr_test";
 	ffrmsvr_test->Parent=Panel2;
 	ffrmsvr_test->Align=alClient;
-
-	ffrmsvr_test->LoadDelegateInfo();
+ 	UnicodeString username=ffrmsvr_test->LoadDelegateInfo();
 	ffrmsvr_test->LoadPublicNodes();
+
+	ffrmdelegate=new TframDelegate(Panel5,"http://test01.lisk.asia:7000",true,username);
+	ffrmdelegate->Name="ffrmdelegate_test";
+	ffrmdelegate->Parent=Panel5;
+	ffrmdelegate->Align=alClient;
+
+
+
 	ffrmsvr_main=new TffrmServers(Panel1,false);
 	ffrmsvr_main->Name="ffrmsvr_main";
 	ffrmsvr_main->Parent=Panel1;
 	ffrmsvr_main->Align=alClient;
-	ffrmsvr_main->LoadDelegateInfo();
+	username=ffrmsvr_main->LoadDelegateInfo();
 	ffrmsvr_main->LoadPublicNodes();
 
-	ffrmdelegate=new TframDelegate(Panel3,"https://login.lisk.asia:2443");
-	ffrmdelegate->Name="ffrmdelegate";
-	ffrmdelegate->Parent=Panel3;
+	ffrmdelegate=new TframDelegate(Panel4,"http://login.lisk.asia:8000",false,username);
+	ffrmdelegate->Name="ffrmdelegate_main";
+	ffrmdelegate->Parent=Panel4;
 	ffrmdelegate->Align=alClient;
-	ffrmdelegate->Reload();
-	//ffrmsvr_main->StartJobs();
 
-	//rmsvr_test->StartJobs();
+
+
 }
 
 //---------------------------------------------------------------------------
 void __fastcall TfrmDlgdashbrd::FormClose(TObject *Sender, TCloseAction &Action)
 {
-
+			try{
 			ffrmsvr_main->StopJobs();
-            ffrmsvr_test->StopJobs();
+			ffrmsvr_test->StopJobs();
 			Action=caFree;
+            }catch(...){}
 }
 //---------------------------------------------------------------------------

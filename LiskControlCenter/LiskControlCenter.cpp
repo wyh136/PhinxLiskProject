@@ -6,11 +6,11 @@
 //---------------------------------------------------------------------------
 #include <Vcl.Styles.hpp>
 #include <Vcl.Themes.hpp>
-USEFORM("frmMain.cpp", MainFrm);
-USEFORM("cfrmPublicNodes.cpp", frmPublicNodes);
-USEFORM("frmdlg.cpp", frmDlgdashbrd);
-USEFORM("forgeframe.cpp", ffrmServers); /* TFrame: File Type */
 USEFORM("frameDelegate.cpp", framDelegate); /* TFrame: File Type */
+USEFORM("forgeframe.cpp", ffrmServers); /* TFrame: File Type */
+USEFORM("cfrmPublicNodes.cpp", frmPublicNodes);
+USEFORM("frmMain.cpp", MainFrm);
+USEFORM("frmdlg.cpp", frmDlgdashbrd);
 //---------------------------------------------------------------------------
 int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 {
@@ -18,7 +18,7 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 	{
 		Application->Initialize();
 		Application->MainFormOnTaskBar = true;
-		TStyleManager::TrySetStyle("Obsidian");
+		TStyleManager::TrySetStyle("Cobalt XEMedia");
 		Application->Title = "Lisk Control Center";
 		Application->CreateForm(__classid(TMainFrm), &MainFrm);
 		Application->Run();

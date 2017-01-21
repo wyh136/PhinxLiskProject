@@ -56,6 +56,10 @@ object MainFrm: TMainFrm
       object mn_pubnodes: TMenuItem
         Caption = '&Public Nodes ...'
         OnClick = mn_pubnodesClick
+        object SpeedTest1: TMenuItem
+          Caption = 'Speed Test'
+          OnClick = SpeedTest1Click
+        end
       end
       object nm_LiskExplorers: TMenuItem
         Caption = 'Lisk &Explorers ...'

@@ -28,7 +28,7 @@ void __fastcall TfrmDlgdashbrd::FormCreate(TObject *Sender)
  	UnicodeString username=ffrmsvr_test->LoadDelegateInfo();
 	ffrmsvr_test->LoadPublicNodes();
 
-	ffrmdelegate=new TframDelegate(Panel5,"http://test01.lisk.asia:7000",true,username);
+	ffrmdelegate=new TframDelegate(Panel5,true,username);
 	ffrmdelegate->Name="ffrmdelegate_test";
 	ffrmdelegate->Parent=Panel5;
 	ffrmdelegate->Align=alClient;
@@ -42,7 +42,7 @@ void __fastcall TfrmDlgdashbrd::FormCreate(TObject *Sender)
 	username=ffrmsvr_main->LoadDelegateInfo();
 	ffrmsvr_main->LoadPublicNodes();
 
-	ffrmdelegate=new TframDelegate(Panel4,"http://login.lisk.asia:8000",false,username);
+	ffrmdelegate=new TframDelegate(Panel4,false,username);
 	ffrmdelegate->Name="ffrmdelegate_main";
 	ffrmdelegate->Parent=Panel4;
 	ffrmdelegate->Align=alClient;

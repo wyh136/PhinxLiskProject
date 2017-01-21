@@ -20,12 +20,16 @@
 //      }
 //---------------------------------------------------------------------------
 
-__fastcall TLiskNetInfo::TLiskNetInfo(bool CreateSuspended,char *liskurl,TMainFrm *frm)
+__fastcall TLiskNetInfo::TLiskNetInfo(bool CreateSuspended,bool isTest,TMainFrm *frm)
 	: TThread(CreateSuspended)
 {
 	mainfrm=frm;
-	nodeurl=liskurl;
-	liskapi=new LiskAPI(nodeurl);
+	if(isTest){
+		nodeurl=TEST_PUBLIC_NODE;
+	}else{
+        nodeurl=MAIN_PUBLIC_NODE;
+	}
+	liskapi=new LiskAPI(AnsiString(nodeurl).c_str());
     this->FreeOnTerminate=true;
 }
 //---------------------------------------------------------------------------
@@ -40,7 +44,7 @@ void __fastcall TLiskNetInfo::Execute()
 			data=liskapi->GetStatus();
 			if(data){
 				jo=(TlkJSONobject *)TlkJSON::ParseText(UnicodeString( data));
-				mainfrm->sbar->Panels->Items[1]->Text=UnicodeString(nodeurl);
+				mainfrm->sbar->Panels->Items[1]->Text=nodeurl;
 				if(jo->getBoolean("success"))
 				  mainfrm->sbar->Panels->Items[0]->Text="Online";
 				else

@@ -9,8 +9,9 @@
 USEFORM("frameDelegate.cpp", framDelegate); /* TFrame: File Type */
 USEFORM("forgeframe.cpp", ffrmServers); /* TFrame: File Type */
 USEFORM("cfrmPublicNodes.cpp", frmPublicNodes);
-USEFORM("frmMain.cpp", MainFrm);
 USEFORM("frmdlg.cpp", frmDlgdashbrd);
+USEFORM("frmSpeed.cpp", frmSpeedTest);
+USEFORM("frmMain.cpp", MainFrm);
 //---------------------------------------------------------------------------
 int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 {

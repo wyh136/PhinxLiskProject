@@ -43,10 +43,10 @@ private:	// User declarations
 	TDelegateInfo *tgi;
 	LiskAPI *liskapi;
 	void __fastcall enumlist(System::UnicodeString ElName, TlkJSONbase* Elem, void * data, bool &Continue);
-    void __fastcall OnData(UnicodeString username,UnicodeString votes,UnicodeString rank, UnicodeString address,UnicodeString publickey,UnicodeString approval, UnicodeString producedblocks,UnicodeString missedblocks,int position ,int _pos);
+    void __fastcall OnData(UnicodeString username,UnicodeString votes,UnicodeString rank, UnicodeString address,UnicodeString publickey,UnicodeString approval, unsigned int producedblocks,unsigned int missedblocks,int position ,int _pos);
 	__fastcall ~TframDelegate();
 public:		// User declarations
-	__fastcall TframDelegate(TComponent* Owner,char* nodeurl,bool isTest,UnicodeString username);
+	__fastcall TframDelegate(TComponent* Owner,bool isTest,UnicodeString username);
 
 };
 //---------------------------------------------------------------------------

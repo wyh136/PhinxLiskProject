@@ -56,20 +56,16 @@ object MainFrm: TMainFrm
       object mn_pubnodes: TMenuItem
         Caption = '&Public Nodes ...'
         OnClick = mn_pubnodesClick
-        object SpeedTest1: TMenuItem
-          Caption = 'Speed Test'
-          OnClick = SpeedTest1Click
-        end
+      end
+      object SpeedTest1: TMenuItem
+        Caption = '&Speed Test ...'
+        OnClick = SpeedTest1Click
       end
       object nm_LiskExplorers: TMenuItem
         Caption = 'Lisk &Explorers ...'
       end
       object N1: TMenuItem
         Caption = '-'
-      end
-      object DisplayTestNet1: TMenuItem
-        Caption = 'Display &Testnet'
-        Checked = True
       end
     end
     object DelegaterTools1: TMenuItem
@@ -80,6 +76,7 @@ object MainFrm: TMainFrm
       end
       object VotesManager1: TMenuItem
         Caption = '&Votes Manager ...'
+        OnClick = VotesManager1Click
       end
       object ReportGenerator1: TMenuItem
         Caption = '&Report Generator ...'

@@ -1,10 +1,9 @@
 object frmSpeedTest: TfrmSpeedTest
   Left = 0
   Top = 0
-  BorderStyle = bsDialog
   Caption = 'Public Node Speed Testing'
-  ClientHeight = 263
-  ClientWidth = 554
+  ClientHeight = 313
+  ClientWidth = 553
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -20,18 +19,69 @@ object frmSpeedTest: TfrmSpeedTest
   OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
-  object GroupBox1: TGroupBox
-    Left = 8
-    Top = 8
-    Width = 537
-    Height = 145
-    Caption = ' Public Nodes '
+  object GroupBox2: TGroupBox
+    Left = 0
+    Top = 208
+    Width = 553
+    Height = 105
+    Align = alBottom
     TabOrder = 0
+    ExplicitLeft = 8
+    ExplicitTop = 159
+    ExplicitWidth = 554
+    DesignSize = (
+      553
+      105)
+    object Button1: TButton
+      Left = 476
+      Top = 9
+      Width = 74
+      Height = 42
+      Anchors = [akTop, akRight]
+      Caption = 'Test'
+      Enabled = False
+      TabOrder = 0
+      OnClick = Button1Click
+    end
+    object Button2: TButton
+      Left = 476
+      Top = 55
+      Width = 75
+      Height = 42
+      Anchors = [akTop, akRight]
+      Caption = 'Quit'
+      TabOrder = 1
+      OnClick = Button2Click
+    end
+    object Memo1: TMemo
+      Left = 10
+      Top = 9
+      Width = 460
+      Height = 88
+      Align = alCustom
+      Anchors = [akLeft, akTop, akRight, akBottom]
+      ReadOnly = True
+      ScrollBars = ssVertical
+      TabOrder = 2
+    end
+  end
+  object GroupBox1: TGroupBox
+    Left = 0
+    Top = 0
+    Width = 553
+    Height = 208
+    Align = alClient
+    Caption = ' Public Nodes '
+    TabOrder = 1
+    ExplicitLeft = 8
+    ExplicitTop = 8
+    ExplicitWidth = 537
+    ExplicitHeight = 145
     object lv: TListView
       Left = 2
       Top = 15
-      Width = 533
-      Height = 128
+      Width = 549
+      Height = 191
       Align = alClient
       Columns = <
         item
@@ -53,50 +103,17 @@ object frmSpeedTest: TfrmSpeedTest
           AutoSize = True
           Caption = 'Speed ( ms )'
         end>
+      DoubleBuffered = True
       GridLines = True
       ReadOnly = True
       RowSelect = True
+      ParentDoubleBuffered = False
       SortType = stData
       TabOrder = 0
       ViewStyle = vsReport
+      ExplicitWidth = 533
+      ExplicitHeight = 128
     end
-  end
-  object GroupBox2: TGroupBox
-    Left = 8
-    Top = 159
-    Width = 457
-    Height = 96
-    TabOrder = 1
-    object Memo1: TMemo
-      Left = 2
-      Top = 15
-      Width = 453
-      Height = 79
-      Align = alClient
-      ReadOnly = True
-      ScrollBars = ssVertical
-      TabOrder = 0
-      ExplicitWidth = 455
-    end
-  end
-  object Button1: TButton
-    Left = 469
-    Top = 159
-    Width = 75
-    Height = 42
-    Caption = 'Test'
-    Enabled = False
-    TabOrder = 2
-    OnClick = Button1Click
-  end
-  object Button2: TButton
-    Left = 469
-    Top = 207
-    Width = 75
-    Height = 42
-    Caption = 'Quit'
-    TabOrder = 3
-    OnClick = Button2Click
   end
   object Timer1: TTimer
     Enabled = False

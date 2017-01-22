@@ -25,7 +25,6 @@ __published:	// IDE-managed Components
 	TMenuItem *mn_pubnodes;
 	TMenuItem *nm_LiskExplorers;
 	TMenuItem *N1;
-	TMenuItem *DisplayTestNet1;
 	TMenuItem *DelegaterTools1;
 	TMenuItem *ForgingDashboard1;
 	TMenuItem *VotesManager1;
@@ -45,6 +44,7 @@ __published:	// IDE-managed Components
 	void __fastcall FormCloseQuery(TObject *Sender, bool &CanClose);
 	void __fastcall ticonDblClick(TObject *Sender);
 	void __fastcall SpeedTest1Click(TObject *Sender);
+	void __fastcall VotesManager1Click(TObject *Sender);
 private:	// User declarations
 	TForm* __fastcall FormExist(UnicodeString szCaption);
 	void __fastcall NotifyEvent(TMessage &Message);

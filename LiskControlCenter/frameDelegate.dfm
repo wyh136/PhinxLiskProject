@@ -19,12 +19,11 @@ object framDelegate: TframDelegate
     Caption = ' Delegater Infomation '
     TabOrder = 0
     object Label3: TLabel
-      Left = 50
+      Left = 66
       Top = 108
-      Width = 74
+      Width = 58
       Height = 19
-      Caption = 'Public Key  :'
-      FocusControl = ed_pkey
+      Caption = 'Balance : '
     end
     object Label2: TLabel
       Left = 41
@@ -55,13 +54,18 @@ object framDelegate: TframDelegate
       Height = 19
       Caption = 'lb_rank'
     end
-    object ed_pkey: TEdit
+    object lb_balance: TLabel
       Left = 144
-      Top = 105
-      Width = 223
-      Height = 27
-      ReadOnly = True
-      TabOrder = 0
+      Top = 106
+      Width = 54
+      Height = 21
+      Caption = '0.0 LSK'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clYellow
+      Font.Height = -16
+      Font.Name = 'Microsoft YaHei UI'
+      Font.Style = []
+      ParentFont = False
     end
     object ed_address: TEdit
       Left = 144
@@ -69,7 +73,7 @@ object framDelegate: TframDelegate
       Width = 223
       Height = 27
       ReadOnly = True
-      TabOrder = 1
+      TabOrder = 0
     end
   end
   object Panel1: TPanel

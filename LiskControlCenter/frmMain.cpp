@@ -194,3 +194,9 @@ void __fastcall TMainFrm::SpeedTest1Click(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
+void __fastcall TMainFrm::VotesManager1Click(TObject *Sender)
+{
+      //todo
+}
+//---------------------------------------------------------------------------
+

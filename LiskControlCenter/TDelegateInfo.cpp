@@ -19,7 +19,7 @@
 //        Form1->Caption = "Updated in a thread";
 //      }
 //---------------------------------------------------------------------------
- int pos=-1;
+ int pos=-1,old_forged=0,old_missed=0;
 __fastcall TDelegateInfo::TDelegateInfo(bool CreateSuspended,UnicodeString username,bool isTestNet)
 	: TThread(CreateSuspended)
 {
@@ -61,14 +61,16 @@ void __fastcall TDelegateInfo::Execute()
 {
 	//---- Place thread code here ----
 	Reload();
-	Sleep(10000);
+
 
 }
 //---------------------------------------------------------------------------
-void __fastcall TDelegateInfo::DoOnData(UnicodeString username,UnicodeString votes,UnicodeString rank, UnicodeString address,UnicodeString publickey,UnicodeString approval, unsigned int producedblocks, unsigned int missedblocks,int position,int _pos )
+void __fastcall TDelegateInfo::DoOnData(UnicodeString username,UnicodeString votes,UnicodeString rank, UnicodeString address,double balance,UnicodeString approval, unsigned int producedblocks, unsigned int missedblocks,int position,int _pos )
 {
-		if(OnData)OnData(username,votes,rank,address,publickey,approval, producedblocks,missedblocks,position, _pos);
+		if(OnData)OnData(username,votes,rank,address,balance,approval, producedblocks,missedblocks,position, _pos);
 }
+
+
 
 void __fastcall TDelegateInfo::Reload()
 {
@@ -76,12 +78,13 @@ void __fastcall TDelegateInfo::Reload()
 	UnicodeString username="";
 	UnicodeString rank="";
 	UnicodeString address="";
-	UnicodeString publickey="";
+	double balance=0.0;
 	UnicodeString approval="";
 	unsigned int producedblocks=0;
 	unsigned int missedblocks=0;
 	UnicodeString votes="";
 	int position=0;
+    int test=0;
 	while(!this->Terminated){
 	try{
 		data=liskapi->GetDelegateByName(AnsiString(UserName).c_str());
@@ -96,18 +99,45 @@ void __fastcall TDelegateInfo::Reload()
 			username=jo->getString("username");
 			rank=IntToStr(jo->getInt("rate"));
 			address=jo->getString("address");
-			publickey=jo->getString("publicKey");
 			pkey=jo->getString("publicKey");
 			votes=FormatFloat("00.00",vote);
 			approval=FloatToStr(jo->getDouble("approval"))+" %";
 			producedblocks=jo->getInt("producedblocks");
 			missedblocks=jo->getInt("missedblocks");
 			position=jo->getInt("productivity");
+			if(old_forged==0) old_forged=producedblocks;
+			if(old_missed==0) old_missed=missedblocks;
+			if(producedblocks>old_forged)
+			{
+				 DoOnForged(producedblocks);
+				 old_forged= producedblocks;
+			}
+
+			if(missedblocks>old_missed)
+			{
+				DoOnMissed(missedblocks);
+				old_missed= missedblocks;
+			}
 
 		}
 		json->Free();
 	}
-		Sleep(10);
+		Sleep(20);
+		data=liskapi->Balance(AnsiString(address).c_str());
+	if(data&&pkey!=""){
+		pos=0 ;
+		TlkJSONobject *json=(TlkJSONobject *)TlkJSON::ParseText(UnicodeString(data));
+
+		if(json->getBoolean("success"))
+		{
+			balance=StrToFloat(json->getString("balance"))/100000000;
+		}else{
+			balance=0;
+		}
+		json->Free();
+
+
+		Sleep(50);
 		data=liskapi->GetNextForgers(20);
 	if(data&&pkey!=""){
 		pos=0 ;
@@ -121,12 +151,25 @@ void __fastcall TDelegateInfo::Reload()
         json->Free();
 
 	}
+
+	}
+
     }catch(...)
 	{
 
 	}
-	DoOnData(username,votes,rank,address,publickey,approval, producedblocks,missedblocks,position,pos);
-    Sleep(10000);
+	DoOnData(username,votes,rank,address,balance,approval, producedblocks,missedblocks,position,pos);
 	}
+		Sleep(10000);
 }
 
+
+void __fastcall TDelegateInfo::DoOnForged(unsigned int blockcount)
+{
+	if(OnForged)OnForged(blockcount);
+}
+
+void __fastcall TDelegateInfo::DoOnMissed(unsigned int blockcount)
+{
+   if(OnMissed)OnMissed(blockcount);
+}

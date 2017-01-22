@@ -10,6 +10,7 @@
 TfrmSpeedTest *frmSpeedTest;
 int counter=0;
 TListItem *best_test=NULL,*best_main=NULL;
+int ping_test=9999,bestping_test=9999,ping_main=9999,bestping_main=9999;
 void __fastcall (__closure *enumfuc)(System::UnicodeString ElName, TlkJSONbase* Elem, void * data, bool &Continue);
 //---------------------------------------------------------------------------
 __fastcall TfrmSpeedTest::TfrmSpeedTest(TComponent* Owner)
@@ -101,15 +102,37 @@ void __fastcall TfrmSpeedTest::StartTest()
 
 void __fastcall TfrmSpeedTest::OnFinished(TListItem *item,int state)
 {
+    if(item==NULL)return;
 	TSpeedTest *tst=(TSpeedTest *)item->Data;
 	counter--;
+
 	if(tst!=NULL)tst->Terminate();
 	if(item->Data!=NULL)item->Data=NULL;
+	bool flag=false;
+	try{
 	switch(state){
 		case -1:   item->SubItems->Strings[3]="OFF";break;
 		case 0:    item->SubItems->Strings[3]="ERROR";break;
-		case 1:	   item->SubItems->Strings[3]=item->SubItems->Strings[3];break;
+		case 1:	   flag=true;break;
 	}
+	if(flag){
+		if(item->SubItems->Strings[2]=="Testnet"){
+			ping_test=StrToInt(item->SubItems->Strings[3]);
+			if(ping_test<bestping_test){
+				bestping_test=ping_test;
+				best_test=item;
+			}
+		}else{
+			ping_main=StrToInt(item->SubItems->Strings[3]);
+			if(ping_main<bestping_main){
+				bestping_main=ping_main;
+				best_main=item;
+			}
+		}
+	}
+    }catch(...){}
+
+
 
 }
 void __fastcall TfrmSpeedTest::Timer1Timer(TObject *Sender)
@@ -133,29 +156,11 @@ void __fastcall TfrmSpeedTest::Timer1Timer(TObject *Sender)
 //---------------------------------------------------------------------------
 void __fastcall TfrmSpeedTest::SaveBestNodes()
 {
-            Timer1->Enabled=false;
-		int ping_test=-1,bestping_test=-1,ping_main=-1,bestping_main=-1;
-		TlkJSONobject *json=(TlkJSONobject *)TlkJSON::ParseText("{\"servers\":{\"mainnet\":\"\",\"testnet\":\"\"}}");
-		TlkJSONlist *nodes=(TlkJSONlist *)json->Field["servers"];
-		for(int i=0;i<lv->Items->Count;i++)
-		{
-			if(lv->Items->Item[i]->SubItems->Strings[3]=="ERROR"||lv->Items->Item[i]->SubItems->Strings[3]=="OFF")
-			continue;
+	Timer1->Enabled=false;
+	try{
+	TlkJSONobject *json=(TlkJSONobject *)TlkJSON::ParseText("{\"servers\":{\"mainnet\":\"\",\"testnet\":\"\"}}");
+	TlkJSONlist *nodes=(TlkJSONlist *)json->Field["servers"];
 
-			if(lv->Items->Item[i]->SubItems->Strings[2]=="Testnet")
-			{	ping_test=StrToInt(lv->Items->Item[i]->SubItems->Strings[3]);
-				if(ping_test=-1||ping_test<bestping_test)
-				{	bestping_test=ping_test;
-					best_test=lv->Items->Item[i];
-				}
-			}else{
-				ping_main=StrToInt(lv->Items->Item[i]->SubItems->Strings[3]);
-				if(ping_main=-1||ping_main<bestping_main)
-				{	bestping_main=ping_main;
-					best_main=lv->Items->Item[i];
-				}
-			}
-		}
 	if(best_main){
 		 nodes->Field["mainnet"]->Value=best_main->SubItems->Strings[1];
 	}
@@ -171,7 +176,8 @@ void __fastcall TfrmSpeedTest::SaveBestNodes()
 	json->Free();
 	delete ss;
 	Memo1->Lines->Add("Best node save successful!");
-    SendMessage(MainFrmHand,WM_NODE_APPLY,0,0);
+	SendMessage(MainFrmHand,WM_NODE_APPLY,0,0);
+    }catch(...){}
 	Button1->Enabled=true;
 	Button2->Enabled=true;
 }

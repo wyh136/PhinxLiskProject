@@ -16,13 +16,13 @@
 class TfrmSpeedTest : public TForm
 {
 __published:	// IDE-managed Components
-	TGroupBox *GroupBox1;
-	TListView *lv;
-	TMemo *Memo1;
-	TGroupBox *GroupBox2;
 	TTimer *Timer1;
+	TGroupBox *GroupBox2;
 	TButton *Button1;
 	TButton *Button2;
+	TMemo *Memo1;
+	TGroupBox *GroupBox1;
+	TListView *lv;
 	void __fastcall FormCreate(TObject *Sender);
 	void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
 	void __fastcall Timer1Timer(TObject *Sender);

@@ -46,6 +46,7 @@ void __fastcall TSpeedTest::Execute()
 		}else{
 			ret=0;
 		}
+        json->Free();
 
 	}
      DoFinished(Item,ret);

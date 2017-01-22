@@ -7,7 +7,7 @@
 #pragma package(smart_init)
 #pragma resource "*.dfm"
 TframDelegate *framDelegate;
-int old_forged=0,old_missed=0;
+
 __fastcall TframDelegate::~TframDelegate()
 {   try{
 	if(liskapi)liskapi->~LiskAPI();
@@ -31,29 +31,23 @@ __fastcall TframDelegate::TframDelegate(TComponent* Owner,bool isTest,UnicodeStr
 	UserName=username;
 	tgi=new TDelegateInfo(true,UserName,isTest);
 	tgi->OnData=OnData;
+	tgi->OnMissed=OnMissed;
+	tgi->OnForged=OnForged;
 	tgi->Resume();
 
  }
 
 //---------------------------------------------------------------------------
-void __fastcall TframDelegate::OnData(UnicodeString username,UnicodeString votes,UnicodeString rank, UnicodeString address,UnicodeString publickey,UnicodeString approval, unsigned int producedblocks,unsigned int missedblocks,int position ,int _pos)
+void __fastcall TframDelegate::OnData(UnicodeString username,UnicodeString votes,UnicodeString rank, UnicodeString address,double balance,UnicodeString approval, unsigned int producedblocks,unsigned int missedblocks,int position ,int _pos)
 {
 	lb_name->Caption=username;
 	lb_rank->Caption=rank;
 	ed_address->Text=address;
-	ed_pkey->Text=publickey;
+	lb_balance->Caption=lb_balance->Caption.sprintf(L"%2f LSK",balance);
 	lb_votes->Caption=votes;
 	lb_appr->Caption=approval;
 	lb_pblocks->Caption=producedblocks;
-			if(old_forged<producedblocks&&old_forged>0){
-			   PostMessage(MainFrmHand,WM_FORGE_GOTBLOCK,0,0);
-			   old_forged=StrToInt(producedblocks);
-			}
 	lb_missed->Caption=missedblocks;
-			if(old_missed<missedblocks&&old_missed>0){
-				PostMessage(MainFrmHand,WM_FORGE_MISSBLOCK,0,0);
-				old_missed=StrToInt(missedblocks);
-			}
 	pbar->Position=position;
 	if(_pos>19){
 		lb_pos->Caption="forging position : > 20";
@@ -62,6 +56,20 @@ void __fastcall TframDelegate::OnData(UnicodeString username,UnicodeString votes
 	}
 }
 
+void __fastcall TframDelegate::OnForged(unsigned int blockcount)
+{
+	TMessage msg;
+	msg.Msg=WM_FORGE_GOTBLOCK;
+	msg.WParam=blockcount;
+	SendMessage(MainFrmHand,msg.Msg,msg.WParam,0);
+}
 
+void __fastcall TframDelegate::OnMissed(unsigned int blockcount)
+{
+    TMessage msg;
+	msg.Msg=WM_FORGE_MISSBLOCK;
+	msg.WParam=blockcount;
+	SendMessage(MainFrmHand,msg.Msg,msg.WParam,0);
+}
 
 

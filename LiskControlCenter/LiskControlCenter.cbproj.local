@@ -92,4 +92,51 @@
     <Transaction>2017/01/21 21:19:39.000.335,E:\PhinxLiskProject\LiskControlCenter\TSpeedTest.h=E:\PhinxLiskProject\LiskControlCenter\Unit3.h</Transaction>
     <Transaction>2017/01/21 21:19:39.000.335,E:\PhinxLiskProject\LiskControlCenter\TSpeedTest.cpp=E:\PhinxLiskProject\LiskControlCenter\Unit3.cpp</Transaction>
   </Transactions>
+	<ProjectSortOrder AutoSort="0" SortType="0">
+    <File Path="E:\PhinxLiskProject"/>
+    <File Path="..\lkJSON"/>
+    <File Path="..\lkJSON\uLkJSON.pas"/>
+    <File Path="cfrmPublicNodes.cpp"/>
+    <File Path="cfrmPublicNodes.cpp"/>
+    <File Path="cfrmPublicNodes.dfm"/>
+    <File Path="cfrmPublicNodes.h"/>
+    <File Path="forgeframe.cpp"/>
+    <File Path="forgeframe.cpp"/>
+    <File Path="forgeframe.dfm"/>
+    <File Path="forgeframe.h"/>
+    <File Path="frameDelegate.cpp"/>
+    <File Path="frameDelegate.cpp"/>
+    <File Path="frameDelegate.dfm"/>
+    <File Path="frameDelegate.h"/>
+    <File Path="frmdlg.cpp"/>
+    <File Path="frmdlg.cpp"/>
+    <File Path="frmdlg.dfm"/>
+    <File Path="frmdlg.h"/>
+    <File Path="frmMain.cpp"/>
+    <File Path="frmMain.cpp"/>
+    <File Path="frmMain.dfm"/>
+    <File Path="frmMain.h"/>
+    <File Path="frmSpeed.cpp"/>
+    <File Path="frmSpeed.cpp"/>
+    <File Path="frmSpeed.dfm"/>
+    <File Path="frmSpeed.h"/>
+    <File Path="LiskControlCenter.cpp"/>
+    <File Path="LiskControlCenterPCH1.h"/>
+    <File Path="mymsg.h"/>
+    <File Path="TDelegateInfo.cpp"/>
+    <File Path="TDelegateInfo.cpp"/>
+    <File Path="TDelegateInfo.h"/>
+    <File Path="TForgeJob.cpp"/>
+    <File Path="TForgeJob.cpp"/>
+    <File Path="TForgeJob.h"/>
+    <File Path="TLiskNetInfo.cpp"/>
+    <File Path="TLiskNetInfo.cpp"/>
+    <File Path="TLiskNetInfo.h"/>
+    <File Path="TPublicNodeWatcher.cpp"/>
+    <File Path="TPublicNodeWatcher.cpp"/>
+    <File Path="TPublicNodeWatcher.h"/>
+    <File Path="TSpeedTest.cpp"/>
+    <File Path="TSpeedTest.cpp"/>
+    <File Path="TSpeedTest.h"/>
+  </ProjectSortOrder>
 </BorlandProject>

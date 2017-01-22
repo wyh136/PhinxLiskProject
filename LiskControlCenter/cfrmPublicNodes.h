@@ -56,6 +56,7 @@ private:	// User declarations
 	void __fastcall LoadPublicNodes(bool isTestNet);
     void __fastcall SavePublicNodes(bool isTestNet);
 	void __fastcall enumlist(System::UnicodeString ElName, TlkJSONbase* Elem, void * data, bool &Continue);
+    void __fastcall (__closure *enumfuc)(System::UnicodeString ElName, TlkJSONbase* Elem, void * data, bool &Continue);
 public:		// User declarations
 	__fastcall TfrmPublicNodes(TComponent* Owner);
 };

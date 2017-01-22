@@ -4,7 +4,6 @@
 #pragma hdrstop
 
 #include "TLiskNetInfo.h"
-#pragma package(smart_init)
 //---------------------------------------------------------------------------
 
 //   Important: Methods and properties of objects in VCL can only be

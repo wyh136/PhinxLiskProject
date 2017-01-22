@@ -12,4 +12,8 @@
 extern PACKAGE HWND MainFrmHand;
 extern PACKAGE UnicodeString MAIN_PUBLIC_NODE;
 extern PACKAGE UnicodeString TEST_PUBLIC_NODE;
+extern PACKAGE UnicodeString TEST_USERNAME;
+extern PACKAGE UnicodeString TEST_PKEY;
+extern PACKAGE UnicodeString MAIN_USERNAME;
+extern PACKAGE UnicodeString MAIN_PKEY;
 #endif

@@ -31,7 +31,8 @@ __fastcall TDelegateInfo::TDelegateInfo(bool CreateSuspended,UnicodeString usern
 	 }
 	 liskapi=new LiskAPI(NodeUrl);
 	 UserName=username;
-     this->FreeOnTerminate=true;
+	 this->FreeOnTerminate=true;
+     TestNet=isTestNet;
 }
 
 __fastcall TDelegateInfo::~TDelegateInfo()
@@ -117,6 +118,14 @@ void __fastcall TDelegateInfo::Reload()
 			{
 				DoOnMissed(missedblocks);
 				old_missed= missedblocks;
+			}
+
+			if(TestNet){
+				TEST_USERNAME=username;
+				TEST_PKEY=pkey;
+			}else{
+				MAIN_USERNAME=username;
+				MAIN_PKEY=pkey;
 			}
 
 		}

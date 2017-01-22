@@ -4,10 +4,9 @@
 #pragma hdrstop
 #include "frmMain.h"
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 #pragma resource "*.dfm"
 TfrmPublicNodes *frmPublicNodes;
-void __fastcall (__closure *enumfuc)(System::UnicodeString ElName, TlkJSONbase* Elem, void * data, bool &Continue);
+
 //---------------------------------------------------------------------------
 __fastcall TfrmPublicNodes::TfrmPublicNodes(TComponent* Owner)
 	: TForm(Owner)

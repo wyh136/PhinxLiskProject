@@ -4,15 +4,7 @@
 #pragma hdrstop
 #include <tchar.h>
 //---------------------------------------------------------------------------
-#include <Vcl.Styles.hpp>
-#include <Vcl.Themes.hpp>
-USEFORM("frameDelegate.cpp", framDelegate); /* TFrame: File Type */
-USEFORM("forgeframe.cpp", ffrmServers); /* TFrame: File Type */
-USEFORM("cfrmPublicNodes.cpp", frmPublicNodes);
-USEFORM("frmdlg.cpp", frmDlgdashbrd);
-USEFORM("frmSpeed.cpp", frmSpeedTest);
-USEFORM("frmMain.cpp", MainFrm);
-USEFORM("frmvotesmgr.cpp", frmVotes);
+USEFORM("Unit2.cpp", Form2);
 //---------------------------------------------------------------------------
 int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 {
@@ -20,9 +12,7 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 	{
 		Application->Initialize();
 		Application->MainFormOnTaskBar = true;
-		TStyleManager::TrySetStyle("Cobalt XEMedia");
-		Application->Title = "Lisk Control Center";
-		Application->CreateForm(__classid(TMainFrm), &MainFrm);
+		Application->CreateForm(__classid(TForm2), &Form2);
 		Application->Run();
 	}
 	catch (Exception &exception)

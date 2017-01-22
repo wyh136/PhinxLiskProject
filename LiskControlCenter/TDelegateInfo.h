@@ -15,6 +15,7 @@ class TDelegateInfo : public TThread
 private:
 	UnicodeString UserName;
 	LiskAPI *liskapi;
+    bool TestNet;
     char* NodeUrl;
 	void __fastcall DoOnData(UnicodeString username,UnicodeString votes,UnicodeString rank, UnicodeString address,double balance,UnicodeString approval, unsigned int producedblocks,unsigned int missedblocks,int position ,int _pos);
 	void __fastcall DoOnForged(unsigned int blockcount);

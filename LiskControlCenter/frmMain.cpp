@@ -4,16 +4,21 @@
 #include "TLiskNetInfo.h"
 #pragma hdrstop
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 #pragma resource "*.dfm"
 TMainFrm *MainFrm;
 TfrmPublicNodes *frmPnodes=NULL;
 TLiskNetInfo *lisknetinfo=NULL;
 TfrmDlgdashbrd *frmdlg=NULL;
 TfrmSpeedTest *frmspeed=NULL;
-HWND MainFrmHand;
-UnicodeString MAIN_PUBLIC_NODE;
-UnicodeString TEST_PUBLIC_NODE;
+TfrmVotes *frmvoter=NULL;
+//------------------------------------------------------------------------------
+HWND MainFrmHand=NULL;
+UnicodeString MAIN_PUBLIC_NODE="";
+UnicodeString TEST_PUBLIC_NODE="";
+UnicodeString TEST_USERNAME="";
+UnicodeString TEST_PKEY="";
+UnicodeString MAIN_USERNAME="";
+UnicodeString MAIN_PKEY="";
 //---------------------------------------------------------------------------
 TForm* __fastcall TMainFrm::FormExist(UnicodeString szCaption)
 {
@@ -196,7 +201,14 @@ void __fastcall TMainFrm::SpeedTest1Click(TObject *Sender)
 
 void __fastcall TMainFrm::VotesManager1Click(TObject *Sender)
 {
-      //todo
+	  frmvoter=(TfrmVotes *)FormExist("Votes Manager");
+	 if(frmvoter==NULL){
+		frmvoter=new  TfrmVotes(MainFrm);
+		frmvoter->Caption="Votes Manager";
+	  }else{
+		 frmvoter->SetFocus();
+	  }
+	 frmvoter->Show();
 }
 //---------------------------------------------------------------------------
 

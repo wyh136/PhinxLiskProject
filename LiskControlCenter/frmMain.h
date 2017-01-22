@@ -15,6 +15,9 @@
 #include "frmSpeed.h"
 #include <Vcl.ExtCtrls.hpp>
 #include "mymsg.h"
+#include "frmvotesmgr.h"
+//---------------------------------------------------------------------------
+
 //---------------------------------------------------------------------------
 class TMainFrm : public TForm
 {

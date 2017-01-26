@@ -16,6 +16,7 @@ object frmSpeedTest: TfrmSpeedTest
   ScreenSnap = True
   Visible = True
   OnClose = FormClose
+  OnCloseQuery = FormCloseQuery
   OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
@@ -26,9 +27,6 @@ object frmSpeedTest: TfrmSpeedTest
     Height = 105
     Align = alBottom
     TabOrder = 0
-    ExplicitLeft = 8
-    ExplicitTop = 159
-    ExplicitWidth = 554
     DesignSize = (
       553
       105)
@@ -73,10 +71,6 @@ object frmSpeedTest: TfrmSpeedTest
     Align = alClient
     Caption = ' Public Nodes '
     TabOrder = 1
-    ExplicitLeft = 8
-    ExplicitTop = 8
-    ExplicitWidth = 537
-    ExplicitHeight = 145
     object lv: TListView
       Left = 2
       Top = 15
@@ -111,8 +105,6 @@ object frmSpeedTest: TfrmSpeedTest
       SortType = stData
       TabOrder = 0
       ViewStyle = vsReport
-      ExplicitWidth = 533
-      ExplicitHeight = 128
     end
   end
   object Timer1: TTimer

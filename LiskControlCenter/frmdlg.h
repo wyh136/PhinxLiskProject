@@ -16,9 +16,6 @@ class TfrmDlgdashbrd : public TForm
 __published:	// IDE-managed Components
 	TPanel *Panel1;
 	TPanel *Panel2;
-	TPanel *Panel3;
-	TPanel *Panel4;
-	TPanel *Panel5;
 	void __fastcall FormCreate(TObject *Sender);
 	void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
 private:	// User declarations

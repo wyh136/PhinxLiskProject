@@ -1,10 +1,10 @@
 object frmDlgdashbrd: TfrmDlgdashbrd
   Left = 0
   Top = 0
+  Width = 822
+  Height = 655
   BorderStyle = bsDialog
   Caption = 'Delegater DashBoard'
-  ClientHeight = 615
-  ClientWidth = 806
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -27,46 +27,16 @@ object frmDlgdashbrd: TfrmDlgdashbrd
     Left = 10
     Top = 10
     Width = 786
-    Height = 153
+    Height = 300
     Align = alTop
-    Caption = 'Panel1'
     TabOrder = 0
   end
   object Panel2: TPanel
     Left = 10
-    Top = 163
+    Top = 310
     Width = 786
-    Height = 144
+    Height = 300
     Align = alTop
-    Caption = 'Panel1'
     TabOrder = 1
-    ExplicitLeft = 7
-    ExplicitTop = 158
-  end
-  object Panel3: TPanel
-    Left = 10
-    Top = 307
-    Width = 786
-    Height = 298
-    Align = alClient
-    TabOrder = 2
-    object Panel4: TPanel
-      Left = 1
-      Top = 1
-      Width = 393
-      Height = 296
-      Align = alLeft
-      Alignment = taLeftJustify
-      TabOrder = 0
-    end
-    object Panel5: TPanel
-      Left = 394
-      Top = 1
-      Width = 391
-      Height = 296
-      Align = alClient
-      Alignment = taLeftJustify
-      TabOrder = 1
-    end
   end
 end

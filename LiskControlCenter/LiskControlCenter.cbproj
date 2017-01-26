@@ -58,7 +58,7 @@
         <Base>true</Base>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base)'!=''">
-        <Custom_Styles>&quot;Cobalt XEMedia|VCLSTYLE|$(BDSCOMMONDIR)\Styles\CobaltXEMedia.vsf&quot;</Custom_Styles>
+        <Custom_Styles>&quot;Emerald Light Slate|VCLSTYLE|$(BDSCOMMONDIR)\Styles\EmeraldLightSlate.vsf&quot;</Custom_Styles>
         <ILINK_LibraryPath>..\DelegateDashboard\;..\lkJSON\;D:\jsoncpp-1.8.0\include;..\slibLiskApi\$(Platform)\$(Config);$(ILINK_LibraryPath)</ILINK_LibraryPath>
         <VerInfo_Locale>2052</VerInfo_Locale>
         <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
@@ -69,7 +69,7 @@
         <Multithreaded>true</Multithreaded>
         <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell;$(DCC_Namespace)</DCC_Namespace>
         <SanitizedProjectName>LiskControlCenter</SanitizedProjectName>
-        <AllPackageLibs>rtl.lib;vcl.lib;IndySystem.lib;IndyProtocols.lib;IndyCore.lib</AllPackageLibs>
+        <AllPackageLibs>rtl.lib;vcl.lib;IndySystem.lib;IndyProtocols.lib;IndyCore.lib;dbrtl.lib;vclFireDAC.lib;FireDAC.lib;FireDACSqliteDriver.lib;FireDACCommonDriver.lib;FireDACCommon.lib;xmlrtl.lib;vcldb.lib;vclx.lib</AllPackageLibs>
         <ProjectType>CppVCLApplication</ProjectType>
         <DCC_CBuilderOutput>JPHNE</DCC_CBuilderOutput>
         <DynamicRTL>true</DynamicRTL>
@@ -127,7 +127,7 @@
         <ILINK_LibraryPath>D:\我的文档\Embarcadero\Studio\Projects\LiskControlCenter\jsoncpp;$(ILINK_LibraryPath)</ILINK_LibraryPath>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_Locale>1033</VerInfo_Locale>
-        <LinkPackageImports>rtl.bpi;vcl.bpi;IndySystem.bpi;IndyProtocols.bpi;IndyCore.bpi</LinkPackageImports>
+        <LinkPackageImports>rtl.bpi;vcl.bpi;IndySystem.bpi;IndyProtocols.bpi;IndyCore.bpi;dbrtl.bpi;vclFireDAC.bpi;FireDAC.bpi;FireDACSqliteDriver.bpi;FireDACCommonDriver.bpi;FireDACCommon.bpi;xmlrtl.bpi;vcldb.bpi;vclx.bpi</LinkPackageImports>
         <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
         <AppEnableHighDPI>true</AppEnableHighDPI>
     </PropertyGroup>
@@ -143,7 +143,7 @@
     <PropertyGroup Condition="'$(Cfg_2_Win32)'!=''">
         <BCC_OptimizeForSize>true</BCC_OptimizeForSize>
         <BCC_OptimizeForSpeed>false</BCC_OptimizeForSpeed>
-        <LinkPackageStatics>rtl.lib;vcl.lib;IndySystem.lib;IndyProtocols.lib;IndyCore.lib</LinkPackageStatics>
+        <LinkPackageStatics>rtl.lib;vcl.lib;IndySystem.lib;IndyProtocols.lib;IndyCore.lib;dbrtl.lib;vclFireDAC.lib;FireDAC.lib;FireDACSqliteDriver.lib;FireDACCommonDriver.lib;FireDACCommon.lib;xmlrtl.lib;vcldb.lib;vclx.lib</LinkPackageStatics>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <ILINK_SelectedWarnings>false</ILINK_SelectedWarnings>
         <ILINK_DisableWarnings>true</ILINK_DisableWarnings>
@@ -164,6 +164,13 @@
             <FormType>dfm</FormType>
             <DependentOn>cfrmPublicNodes.h</DependentOn>
             <BuildOrder>5</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="DM.cpp">
+            <Form>dm1</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TDataModule</DesignClass>
+            <DependentOn>DM.h</DependentOn>
+            <BuildOrder>17</BuildOrder>
         </CppCompile>
         <CppCompile Include="forgeframe.cpp">
             <Form>ffrmServers</Form>
@@ -240,10 +247,11 @@
         <DelphiCompile Include="..\lkJSON\uLkJSON.pas">
             <BuildOrder>10</BuildOrder>
         </DelphiCompile>
-        <FormResources Include="frameDelegate.dfm"/>
-        <FormResources Include="frmdlg.dfm"/>
-        <FormResources Include="cfrmPublicNodes.dfm"/>
         <FormResources Include="forgeframe.dfm"/>
+        <FormResources Include="frameDelegate.dfm"/>
+        <FormResources Include="cfrmPublicNodes.dfm"/>
+        <FormResources Include="DM.dfm"/>
+        <FormResources Include="frmdlg.dfm"/>
         <FormResources Include="frmvotesmgr.dfm"/>
         <FormResources Include="frmMain.dfm"/>
         <FormResources Include="frmSpeed.dfm"/>

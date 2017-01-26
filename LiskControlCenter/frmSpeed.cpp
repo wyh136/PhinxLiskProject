@@ -8,7 +8,7 @@
 #pragma package(smart_init)
 #pragma resource "*.dfm"
 TfrmSpeedTest *frmSpeedTest;
-int counter=0;
+int counter;
 TListItem *best_test=NULL,*best_main=NULL;
 int ping_test=9999,bestping_test=9999,ping_main=9999,bestping_main=9999;
 void __fastcall (__closure *enumfuc)(System::UnicodeString ElName, TlkJSONbase* Elem, void * data, bool &Continue);
@@ -78,7 +78,7 @@ void __fastcall TfrmSpeedTest::FormCreate(TObject *Sender)
 void __fastcall TfrmSpeedTest::FormClose(TObject *Sender, TCloseAction &Action)
 
 {
-          Action=caFree;
+		  Action=caFree;
 }
 //---------------------------------------------------------------------------
 void __fastcall TfrmSpeedTest::StartTest()
@@ -130,16 +130,17 @@ void __fastcall TfrmSpeedTest::OnFinished(TListItem *item,int state)
 			}
 		}
 	}
-    }catch(...){}
+	}catch(...){}
 
 
 
 }
 void __fastcall TfrmSpeedTest::Timer1Timer(TObject *Sender)
 {
+try{
 	for(int i=0;i<lv->Items->Count;i++)
 	 {
-        TListItem *Item=lv->Items->Item[i];
+		TListItem *Item=lv->Items->Item[i];
 		if(Item->Data!=NULL)
 		{
 			Item->SubItems->Strings[3]=StrToInt(Item->SubItems->Strings[3])+1;
@@ -147,29 +148,29 @@ void __fastcall TfrmSpeedTest::Timer1Timer(TObject *Sender)
 	 }
 
 	if(counter==0){
-
+	   Timer1->Enabled=false;
 	   Memo1->Lines->Add("Testing finished.");
-       SaveBestNodes();
+	   SaveBestNodes();
 	}
-
+	}catch(...){}
 }
 //---------------------------------------------------------------------------
 void __fastcall TfrmSpeedTest::SaveBestNodes()
 {
-	Timer1->Enabled=false;
-	try{
-	TlkJSONobject *json=(TlkJSONobject *)TlkJSON::ParseText("{\"servers\":{\"mainnet\":\"\",\"testnet\":\"\"}}");
-	TlkJSONlist *nodes=(TlkJSONlist *)json->Field["servers"];
 
-	if(best_main){
-		 nodes->Field["mainnet"]->Value=best_main->SubItems->Strings[1];
+	//try{
+	UnicodeString mainet="",testnet="";
+	if(best_main!=NULL && best_main->SubItems->Strings[1]!=NULL){
+		mainet=best_main->SubItems->Strings[1];
 	}
-    if(best_test){
-		 nodes->Field["testnet"]->Value=best_test->SubItems->Strings[1];
+	if(best_test!=NULL&&best_test->SubItems->Strings[1]!=NULL){
+		testnet=best_test->SubItems->Strings[1];
 	}
+
 	Memo1->Lines->Add("Best mainnet node is :"+best_main->SubItems->Strings[1]);
 	Memo1->Lines->Add("Best testnet node is :"+best_test->SubItems->Strings[1]);
-	UnicodeString path=ExtractFileDir(ParamStr(0))+"\\config.json";
+	TlkJSONobject *json=(TlkJSONobject *)TlkJSON::ParseText("{\"servers\":{\"mainnet\":\""+mainet+"\",\"testnet\":\""+testnet+"\"}}");
+	UnicodeString path=ExtractFileDir(Application->ExeName)+"\\config.json";
 	TStringList *ss=new TStringList();
 	ss->Text=TlkJSON::GenerateText(json);
 	ss->SaveToFile(path);
@@ -177,9 +178,10 @@ void __fastcall TfrmSpeedTest::SaveBestNodes()
 	delete ss;
 	Memo1->Lines->Add("Best node save successful!");
 	SendMessage(MainFrmHand,WM_NODE_APPLY,0,0);
-    }catch(...){}
+	//}catch(...){}
 	Button1->Enabled=true;
 	Button2->Enabled=true;
+
 }
 void __fastcall TfrmSpeedTest::Button1Click(TObject *Sender)
 {
@@ -190,7 +192,22 @@ void __fastcall TfrmSpeedTest::Button1Click(TObject *Sender)
 
 void __fastcall TfrmSpeedTest::Button2Click(TObject *Sender)
 {
-    this->Close();
+	this->Close();
+
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TfrmSpeedTest::FormCloseQuery(TObject *Sender, bool &CanClose)
+
+{
+	/* for(int i;i<lv->Items->Count;i++)
+		  {
+			if(lv->Items->Item[i]->Data){
+				TSpeedTest *tst=(TSpeedTest *)lv->Items->Item[i]->Data;
+				tst->Terminate();
+			}
+
+		  } */
 }
 //---------------------------------------------------------------------------
 

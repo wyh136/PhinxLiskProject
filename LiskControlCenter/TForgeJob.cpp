@@ -36,9 +36,9 @@ void __fastcall TForgeJob::Execute()
 	//---- Place thread code here ----
 
 	char *data=NULL;
-    if(nodeitem==NULL)return;
-	while(!this->Terminated){
 
+	while(!this->Terminated){
+        if(nodeitem==NULL)continue;
 		try{
 			data=liskapi->ForgingStatu(AnsiString(publickey).c_str());
             if(data!=NULL)

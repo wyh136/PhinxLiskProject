@@ -1,8 +1,8 @@
 object ffrmServers: TffrmServers
   Left = 0
   Top = 0
-  Width = 718
-  Height = 188
+  Width = 716
+  Height = 154
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -16
@@ -13,16 +13,18 @@ object ffrmServers: TffrmServers
   object GroupBox1: TGroupBox
     Left = 0
     Top = 0
-    Width = 718
-    Height = 188
+    Width = 716
+    Height = 154
     Align = alClient
     Caption = 'Server Array [ - ]'
     TabOrder = 0
+    ExplicitWidth = 718
+    ExplicitHeight = 188
     object lv: TListView
       Left = 2
       Top = 23
-      Width = 714
-      Height = 163
+      Width = 712
+      Height = 129
       Align = alClient
       Checkboxes = True
       Columns = <
@@ -55,6 +57,8 @@ object ffrmServers: TffrmServers
       RowSelect = True
       TabOrder = 0
       ViewStyle = vsReport
+      ExplicitWidth = 714
+      ExplicitHeight = 163
     end
   end
 end

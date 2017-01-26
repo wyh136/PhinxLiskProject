@@ -24,27 +24,27 @@ void __fastcall TfrmDlgdashbrd::FormCreate(TObject *Sender)
 	ffrmsvr_test=new TffrmServers(Panel2,true);
 	ffrmsvr_test->Name="ffrmsvr_test";
 	ffrmsvr_test->Parent=Panel2;
-	ffrmsvr_test->Align=alClient;
+	ffrmsvr_test->Align=alTop;
  	UnicodeString username=ffrmsvr_test->LoadDelegateInfo();
 	ffrmsvr_test->LoadPublicNodes();
 
-	ffrmdelegate=new TframDelegate(Panel5,true,username);
+	ffrmdelegate=new TframDelegate(Panel2,true,username);
 	ffrmdelegate->Name="ffrmdelegate_test";
-	ffrmdelegate->Parent=Panel5;
 	ffrmdelegate->Align=alClient;
+    ffrmdelegate->Parent=Panel2;
 
 
 
 	ffrmsvr_main=new TffrmServers(Panel1,false);
 	ffrmsvr_main->Name="ffrmsvr_main";
 	ffrmsvr_main->Parent=Panel1;
-	ffrmsvr_main->Align=alClient;
+	ffrmsvr_main->Align=alTop;
 	username=ffrmsvr_main->LoadDelegateInfo();
 	ffrmsvr_main->LoadPublicNodes();
 
-	ffrmdelegate=new TframDelegate(Panel4,false,username);
+	ffrmdelegate=new TframDelegate(Panel1,false,username);
 	ffrmdelegate->Name="ffrmdelegate_main";
-	ffrmdelegate->Parent=Panel4;
+	ffrmdelegate->Parent=Panel1;
 	ffrmdelegate->Align=alClient;
 
 

@@ -104,7 +104,7 @@
     <Transaction>2017/01/24 10:52:32.000.863,E:\PhinxLiskProject\LiskControlCenter\DM.cpp=E:\PhinxLiskProject\LiskControlCenter\Unit3.cpp</Transaction>
   </Transactions>
 	<ProjectSortOrder AutoSort="0" SortType="0">
-    <File Path="E:\PhinxLiskProject"/>
+    <File Path="D:\PhinxLiskProject"/>
     <File Path="..\lkJSON"/>
     <File Path="..\lkJSON\uLkJSON.pas"/>
     <File Path="cfrmPublicNodes.cpp"/>
@@ -156,9 +156,5 @@
     <File Path="TFetchVotes.cpp"/>
     <File Path="TFetchVotes.cpp"/>
     <File Path="TFetchVotes.h"/>
-    <File Path="DM.cpp"/>
-    <File Path="DM.cpp"/>
-    <File Path="DM.dfm"/>
-    <File Path="DM.h"/>
   </ProjectSortOrder>
 </BorlandProject>

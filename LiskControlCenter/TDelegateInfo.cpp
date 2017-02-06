@@ -88,6 +88,7 @@ void __fastcall TDelegateInfo::Reload()
     int test=0;
 	while(!this->Terminated){
 	try{
+	repeat:
 		data=liskapi->GetDelegateByName(AnsiString(UserName).c_str());
 
 	UnicodeString pkey="";
@@ -165,7 +166,7 @@ void __fastcall TDelegateInfo::Reload()
 
     }catch(...)
 	{
-
+        goto repeat;
 	}
 	DoOnData(username,votes,rank,address,balance,approval, producedblocks,missedblocks,position,pos);
 	}

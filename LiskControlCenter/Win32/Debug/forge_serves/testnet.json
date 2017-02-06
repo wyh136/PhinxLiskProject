@@ -1,0 +1,7 @@
+{
+  "servers":
+  [
+    {"url":"http://test01.lisk.asia:7000"},
+    {"url":"http://test02.lisk.asia:7000"}
+  ]
+}

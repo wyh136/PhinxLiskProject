@@ -38,7 +38,8 @@ void __fastcall TForgeJob::Execute()
 	char *data=NULL;
 
 	while(!this->Terminated){
-        if(nodeitem==NULL)continue;
+		if(nodeitem==NULL)continue;
+		repeat:
 		try{
 			data=liskapi->ForgingStatu(AnsiString(publickey).c_str());
             if(data!=NULL)
@@ -68,7 +69,7 @@ void __fastcall TForgeJob::Execute()
 			 }
 		}catch(...)
 		{
-
+           goto repeat;
 		}
 
 

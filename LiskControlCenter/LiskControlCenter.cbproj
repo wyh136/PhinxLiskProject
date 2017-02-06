@@ -165,13 +165,6 @@
             <DependentOn>cfrmPublicNodes.h</DependentOn>
             <BuildOrder>5</BuildOrder>
         </CppCompile>
-        <CppCompile Include="DM.cpp">
-            <Form>dm1</Form>
-            <FormType>dfm</FormType>
-            <DesignClass>TDataModule</DesignClass>
-            <DependentOn>DM.h</DependentOn>
-            <BuildOrder>17</BuildOrder>
-        </CppCompile>
         <CppCompile Include="forgeframe.cpp">
             <Form>ffrmServers</Form>
             <FormType>dfm</FormType>
@@ -247,11 +240,10 @@
         <DelphiCompile Include="..\lkJSON\uLkJSON.pas">
             <BuildOrder>10</BuildOrder>
         </DelphiCompile>
-        <FormResources Include="forgeframe.dfm"/>
         <FormResources Include="frameDelegate.dfm"/>
-        <FormResources Include="cfrmPublicNodes.dfm"/>
-        <FormResources Include="DM.dfm"/>
         <FormResources Include="frmdlg.dfm"/>
+        <FormResources Include="cfrmPublicNodes.dfm"/>
+        <FormResources Include="forgeframe.dfm"/>
         <FormResources Include="frmvotesmgr.dfm"/>
         <FormResources Include="frmMain.dfm"/>
         <FormResources Include="frmSpeed.dfm"/>
@@ -300,11 +292,6 @@
                 </RDP_Source_Files>
             </CPlusPlusBuilder.Personality>
             <Deployment Version="3">
-                <DeployFile Condition="'$(DynamicRTL)'=='true' And '$(Multithreaded)'!='true'" LocalName="$(BDS)\bin\cc32240.dll" Class="DependencyModule">
-                    <Platform Name="Win32">
-                        <Overwrite>true</Overwrite>
-                    </Platform>
-                </DeployFile>
                 <DeployFile Condition="'$(DynamicRTL)'=='true' And '$(Multithreaded)'=='true'" LocalName="$(BDS)\bin\cc32c240mt.dll" Class="DependencyModule">
                     <Platform Name="Win32">
                         <Overwrite>true</Overwrite>
@@ -331,13 +318,29 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile Condition="'$(DynamicRTL)'=='true' And '$(Multithreaded)'!='true'" LocalName="$(BDS)\bin64\cc64240.dll" Class="DependencyModule">
-                    <Platform Name="Win64">
+                <DeployFile Condition="'$(DynamicRTL)'=='true'" LocalName="$(BDS)\Redist\osx32\libcgstl.dylib" Class="DependencyModule">
+                    <Platform Name="OSX32">
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile Condition="'$(DynamicRTL)'=='true'" LocalName="$(BDS)\Redist\osx32\libcgstl.dylib" Class="DependencyModule">
-                    <Platform Name="OSX32">
+                <DeployFile LocalName=".\Win32\Debug\LiskControlCenter.tds" Configuration="Debug" Class="DebugSymbols">
+                    <Platform Name="Win32">
+                        <RemoteName>LiskControlCenter.tds</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile Condition="'$(DynamicRTL)'=='true' And '$(Multithreaded)'=='true'" LocalName="$(BDS)\bin\cc32240mt.dll" Class="DependencyModule">
+                    <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile Condition="'$(DynamicRTL)'=='true' And '$(Multithreaded)'!='true'" LocalName="$(BDS)\bin\cc32240.dll" Class="DependencyModule">
+                    <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile Condition="'$(DynamicRTL)'=='true' And '$(Multithreaded)'!='true'" LocalName="$(BDS)\bin64\cc64240.dll" Class="DependencyModule">
+                    <Platform Name="Win64">
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
@@ -353,11 +356,6 @@
                     </Platform>
                 </DeployFile>
                 <DeployFile Condition="'$(DynamicRTL)'=='true' And '$(Multithreaded)'!='true'" LocalName="$(BDS)\bin\cc32c240.dll" Class="DependencyModule">
-                    <Platform Name="Win32">
-                        <Overwrite>true</Overwrite>
-                    </Platform>
-                </DeployFile>
-                <DeployFile Condition="'$(DynamicRTL)'=='true' And '$(Multithreaded)'=='true'" LocalName="$(BDS)\bin\cc32240mt.dll" Class="DependencyModule">
                     <Platform Name="Win32">
                         <Overwrite>true</Overwrite>
                     </Platform>

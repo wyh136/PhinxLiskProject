@@ -59,7 +59,8 @@ char * __stdcall LiskAPI::HTTPRequest(REQUEST_METHOD request_method,char * url,c
 			break;
 		}
 	}catch(...){
-        result="";
+        if (ss) { delete ss;}
+		result=HTTPRequest(request_method,url,data);
 	}
 	if (ss) {
 		delete ss;
@@ -69,6 +70,7 @@ char * __stdcall LiskAPI::HTTPRequest(REQUEST_METHOD request_method,char * url,c
 }
 // ---------------------------------------------------------------------------
 char * __stdcall LiskAPI::_request(char * url /* GET only */) {
+
 	return _request(RGET, url, NULL);
 }
 // ---------------------------------------------------------------------------
